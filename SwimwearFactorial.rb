@@ -2,15 +2,10 @@ n = gets.chomp.to_i
 x = 1
 for i in 1..n
   x *= i
-  while x % 10 == 0 do # 10で割ってあまり0なら末尾を消す
+  while x % 10 == 0 do # 末尾から0を消す処理
     x /= 10
   end
-  xLength = x.to_s.length
-
-  if xLength >= 10 then
-    sliceLength = xLength - 9
-    x = x.to_s.slice(xLength - 9..xLength - 1).to_i
-  end
-  # puts "#{i} : #{x}"
+  # 余りを取って9桁維持, ある程度上位桁の
+  x %= 10 ** (9 + 4)
 end
-puts x
+puts x % (10 ** 9)
